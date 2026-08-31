@@ -1,14 +1,14 @@
 # Dependencies
 node_modules/
+package-lock.json
 
-# Environment files
+# Environment files (secrets)
 .env
 .env.local
 .env.*.local
 
 # Build output
 frontend/dist/
-backend/dist/
 
 # Logs
 *.log
@@ -26,3 +26,6 @@ Thumbs.db
 
 # Docker volumes
 mysql_data/
+
+# Temp files
+nul

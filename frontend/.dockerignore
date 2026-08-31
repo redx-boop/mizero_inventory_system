@@ -1,0 +1,13 @@
+node_modules
+dist
+.git
+.vscode
+.env
+npm-debug.log
+
+# Test config (not needed in build)
+vitest.config.js
+
+# OS files
+.DS_Store
+Thumbs.db

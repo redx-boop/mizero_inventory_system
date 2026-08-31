@@ -1,0 +1,7 @@
+-- ============================================
+-- REMOVED: Selling Price & Gross Margin (Migration 006)
+-- ============================================
+-- The system is an institutional inventory tracking system.
+-- Selling price, revenue, and gross margin are not applicable.
+-- This migration file is intentionally left empty.
+-- ============================================

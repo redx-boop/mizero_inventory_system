@@ -1,0 +1,27 @@
+node_modules
+uploads
+logs
+.git
+.vscode
+.env
+npm-debug.log
+
+# Log files
+backend.log
+server.log
+backend_logs.txt
+
+# Test files (not needed in production image)
+tests
+jest.config.js
+
+# Dev scripts and docs
+scripts
+nul
+
+# Database backups (large, not needed in image)
+database backup
+
+# OS files
+.DS_Store
+Thumbs.db

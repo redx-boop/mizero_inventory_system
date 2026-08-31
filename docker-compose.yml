@@ -1,0 +1,130 @@
+# ============================================
+# Mizero Inventory Hub — Docker Compose
+# ============================================
+# Production-grade deployment with MySQL 8,
+# Node.js backend, and Nginx-served React frontend.
+#
+# Usage:
+#   docker compose up -d                    # Start all services
+#   docker compose down                     # Stop all services
+#   docker compose logs -f                  # Watch logs
+#   docker compose exec backend node scripts/setup-admin.js  # Run scripts
+#
+# Environment file: .env.production (copy from .env.example)
+# ============================================
+
+services:
+  # ==================== Database ====================
+  db:
+    image: mysql:8.0
+    container_name: mizero-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${DB_NAME:-mizero_inventory}
+      MYSQL_USER: ${DB_USER:-mizero}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-mizero_password}
+    ports:
+      - "127.0.0.1:3307:3306"   # Expose on host (localhost only) on a non-standard port
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./backend/database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./backend/database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+      # Migration: user-departments many-to-many table (required for login to work)
+      - ./backend/database/migration-002-user-departments.sql:/docker-entrypoint-initdb.d/03-migration-002-user-departments.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-rootpassword}"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - mizero-network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+
+  # ==================== Backend API ====================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mizero-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-mizero_inventory}
+      DB_USER: ${DB_USER:-mizero}
+      DB_PASSWORD: ${DB_PASSWORD:-mizero_password}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-24h}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
+    volumes:
+      - backend_uploads:/app/uploads
+      - backend_backups:/app/database\ backup
+    ports:
+      - "127.0.0.1:5000:5000"  # Not directly exposed (accessed via Nginx)
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    networks:
+      - mizero-network
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
+
+  # ==================== Frontend (Nginx) ====================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mizero-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${PORT:-80}:80"  # Main entry point — map to host port 80 by default
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:80/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    networks:
+      - mizero-network
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
+
+# ==================== Volumes ====================
+volumes:
+  mysql_data:
+    driver: local
+  backend_uploads:
+    driver: local
+  backend_backups:
+    driver: local
+
+# ==================== Networks ====================
+networks:
+  mizero-network:
+    driver: bridge

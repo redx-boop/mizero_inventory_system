@@ -1,0 +1,41 @@
+sku,name,category,unit,quantity,minimum_stock,item_type,department,unit_cost,currency
+LAP003,Dell Latitude Laptop,Electronics,pcs,10,2,non-consumable,Finance,850000,RWF
+CHR001,Office Chair,Furniture,pcs,25,5,non-consumable,General Store,150000,RWF
+PAP002,Office Paper A4,Office Supplies,ream,100,20,consumable,Finance,12000,RWF
+PEN002,Ballpoint Pens Blue,Office Supplies,box,200,10,consumable,Finance,5000,RWF
+MOU001,Wireless Mouse,Electronics,pcs,50,10,non-consumable,IT Department,15000,RWF
+KBD001,USB Keyboard,Electronics,pcs,40,8,non-consumable,IT Department,20000,RWF
+MON001,24-inch Monitor,Electronics,pcs,15,3,non-consumable,IT Department,180000,RWF
+TAB001,Office Desk,Furniture,pcs,12,2,non-consumable,General Store,250000,RWF
+CAB001,Filing Cabinet,Furniture,pcs,8,2,non-consumable,Human Resources,120000,RWF
+NOT001,Sticky Notes,Office Supplies,pack,150,30,consumable,Finance,2500,RWF
+MAR001,Whiteboard Markers,Office Supplies,box,80,15,consumable,General Store,8000,RWF
+STA001,Stapler,Office Supplies,pcs,30,5,non-consumable,Finance,4500,RWF
+SAN001,Hand Sanitizer 500ml,Cleaning Supplies,bottle,60,12,consumable,General Store,3500,RWF
+TIS001,Facial Tissues,Cleaning Supplies,box,120,20,consumable,General Store,1500,RWF
+LAP002,MacBook Pro Laptop,Electronics,pcs,5,1,non-consumable,IT Department,2500000,RWF
+PRN001,LaserJet Printer,Electronics,pcs,4,1,non-consumable,IT Department,450000,RWF
+TON001,Printer Toner Black,Office Supplies,pcs,15,3,consumable,IT Department,85000,RWF
+COF001,Coffee Beans 1kg,Pantry,pack,20,5,consumable,Human Resources,18000,RWF
+SUG001,White Sugar 1kg,Pantry,pack,30,5,consumable,Human Resources,2000,RWF
+WTR001,Drinking Water 20L,Pantry,bottle,40,10,consumable,General Store,4000,RWF
+HDP001,Bluetooth Headphones,Electronics,pcs,25,5,non-consumable,IT Department,45000,RWF
+HDD001,External Hard Drive 1TB,Electronics,pcs,15,3,non-consumable,IT Department,65000,RWF
+CBL001,HDMI Cable 3m,Electronics,pcs,30,5,consumable,IT Department,7000,RWF
+UPS001,Uninterruptible Power Supply (UPS),Electronics,pcs,10,2,non-consumable,IT Department,120000,RWF
+SCI001,Office Scissors,Office Supplies,pcs,20,4,non-consumable,General Store,3000,RWF
+PCL001,Paper Clips Box,Office Supplies,box,100,15,consumable,Finance,1200,RWF
+NBT001,A5 Lined Notebook,Office Supplies,pcs,80,20,consumable,Human Resources,3500,RWF
+BCL001,Binder Clips Large,Office Supplies,box,50,10,consumable,Finance,2500,RWF
+WBD001,Magnetic Whiteboard,Office Supplies,pcs,5,1,non-consumable,General Store,85000,RWF
+FAK001,First Aid Kit,Safety Equipment,pcs,8,2,non-consumable,General Store,35000,RWF
+FXG001,Fire Extinguisher 4kg,Safety Equipment,pcs,6,2,non-consumable,General Store,60000,RWF
+TEA001,Green Tea Bags (100 pack),Pantry,box,15,3,consumable,Human Resources,12000,RWF
+MLK001,Long Life Milk 1L,Pantry,box,48,12,consumable,Human Resources,1500,RWF
+CUP001,Paper Cups (100 pack),Pantry,pack,25,5,consumable,General Store,6000,RWF
+EXC001,Extension Cord 5m,Facilities,pcs,15,3,non-consumable,IT Department,15000,RWF
+BLB001,LED Bulb 12W,Facilities,pcs,50,10,consumable,General Store,2500,RWF
+BIN001,Office Trash Can,Facilities,pcs,20,4,non-consumable,General Store,8000,RWF
+LMP001,LED Desk Lamp,Facilities,pcs,12,2,non-consumable,General Store,22000,RWF
+STG001,Storage Box Plastic,Facilities,pcs,30,5,non-consumable,Finance,14000,RWF
+BAT001,AA Alkaline Batteries (4 pack),Electronics,pack,60,15,consumable,IT Department,3000,RWF
