@@ -113,14 +113,7 @@ npm run dev
 - **Frontend**: http://localhost:5173
 - **Backend API**: http://localhost:5000/api
 
-### Default Users (after running seed & updating passwords)
 
-| Email | Password | Role |
-|-------|----------|------|
-| admin@mizero.com | (set via reset) | Super Admin |
-| manager@mizero.com | (set via reset) | Manager |
-| stock@mizero.com | (set via reset) | Stock Manager |
-| staff@mizero.com | (set via reset) | Staff |
 
 > **Note**: Seeded users don't have proper bcrypt hashes. After starting the backend, use the `/api/auth/reset-password` endpoint (accessible by Super Admin) to set passwords for these users. Or log in as a Super Admin via a freshly created user.
 
